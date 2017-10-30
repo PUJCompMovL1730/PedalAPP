@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_create_route"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_width="148dp"
+        android:layout_height="212dp"
+        android:layout_gravity="center"
+        android:src="@drawable/route"/>
+    <EditText
+        android:id="@+id/et_route_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/route_name"/>
+    <EditText
+        android:id="@+id/et_begin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/route_beggin"/>
+    <EditText
+        android:id="@+id/et_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/route_end"/>
+
+    <Spinner
+        android:id="@+id/tipo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/tipo_ruta">
+    </Spinner>
+
+    <EditText
+        android:id="@+id/hora_programada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Hora"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/bt_create_route"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_route"
+        android:layout_gravity="right"/>
+
+    <TextView
+        android:id="@+id/tv_route_created"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"/>
+
+
+</LinearLayout>

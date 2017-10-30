@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/totxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/To"
+        android:textSize="20dp"
+        android:paddingTop="20dp"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+    <EditText
+        android:id="@+id/subjecttxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Asunto"/>
+
+    <EditText
+        android:id="@+id/msjtxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mensaje"
+        android:paddingTop="30dp"/>
+    <Button
+        android:id="@+id/send_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Send"
+        android:layout_gravity="right"/>
+</LinearLayout>
