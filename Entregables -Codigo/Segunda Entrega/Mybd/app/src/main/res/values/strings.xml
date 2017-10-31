@@ -120,4 +120,6 @@
 
     <string name="new_email">Nuevo correo</string>
 
+    <string name="errorUpdateCorreoAsign">Ese correo ya está asignado a un usuario</string>
+
 </resources>

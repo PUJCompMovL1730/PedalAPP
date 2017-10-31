@@ -48,7 +48,6 @@ public class UpdateProfile extends AppCompatActivity {
     //Info del Usuario
     EditText et_nombres;
     EditText et_apellidos;
-    EditText et_correo;
     Spinner sp_cities;
     Spinner sp_gender;
     Spinner sp_userType;
@@ -103,7 +102,6 @@ public class UpdateProfile extends AppCompatActivity {
         //Inicializar info del usuario
         et_nombres = (EditText) findViewById(R.id.updateNombre);
         et_apellidos = (EditText) findViewById(R.id.updateApellido);
-        et_correo = (EditText) findViewById(R.id.updateCorreo);
         sp_cities = (Spinner) findViewById(R.id.updateCity);
         sp_gender = (Spinner) findViewById(R.id.updateGender);
         sp_userType = (Spinner) findViewById(R.id.updateUserType);
@@ -194,9 +192,6 @@ public class UpdateProfile extends AppCompatActivity {
                 antApellido = yo.getApellidos();
                 et_apellidos.setText(antApellido);
 
-                antCorreo = yo.getCorreo();
-                et_correo.setText(antCorreo);
-
                 antCiudad = yo.getCiudad();
                 for(int i = 0; i < sp_cities.getAdapter().getCount() ; ++i){
                     if(  antCiudad.equals( sp_cities.getItemAtPosition(i).toString() )  ){
@@ -277,7 +272,6 @@ public class UpdateProfile extends AppCompatActivity {
 
                 String nombres = et_nombres.getText().toString();
                 String apellidos = et_apellidos.getText().toString();
-                String correo = et_correo.getText().toString();
                 String ciudad = sp_cities.getSelectedItem().toString();
                 String genero = sp_gender.getSelectedItem().toString();
                 String tipoUsuario = sp_userType.getSelectedItem().toString();
@@ -323,16 +317,6 @@ public class UpdateProfile extends AppCompatActivity {
                     //
 
                     mensaje += "\nApellidos";
-                }
-
-                if( !correo.isEmpty() && !correo.equals(antCorreo) ){
-                    if (!correo.matches("[_A-Za-z0-9-]*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*")){
-                        et_correo.setError("No es un correo.");
-                    }else{
-                        yo.setCorreo(correo);
-                        thisUser.updateEmail(correo);
-                        mensaje += "\nCorreo";
-                    }
                 }
 
                 if( !ciudad.equals(antCiudad) ){

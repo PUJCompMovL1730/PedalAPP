@@ -144,11 +144,9 @@ public class UpdateLogin extends AppCompatActivity {
                                     }
                                     else {
                                         actualizarCorreo();
-                                        thisUser.updateEmail(correo);
                                     }
                                 }
                                 });
-                                Toast.makeText(UpdateLogin.this,"Correo electrónico actualizado",Toast.LENGTH_SHORT).show();
                             }else{
                                 et_correo.setError("No es un correo.");
                             }
@@ -174,10 +172,10 @@ public class UpdateLogin extends AppCompatActivity {
                                         }
                                         else {
                                             thisUser.updatePassword(newPassword);
+                                            Toast.makeText(UpdateLogin.this,"Contraseña actualizada",Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     });
-                                    Toast.makeText(UpdateLogin.this,"Contraseña actualizada",Toast.LENGTH_SHORT).show();
                                 }else{
                                     et_newPassword.setError("Deben coincidir");
                                     et_passwordRepeat.setError("Deben coincidir");
@@ -201,10 +199,15 @@ public class UpdateLogin extends AppCompatActivity {
 
     //Actualizar el correo del usuario actual
     public void actualizarCorreo() {
+
         myRef = database.getReference(PATH_USERS);
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                String correoDeseado = et_correo.getText().toString();
+                //Bandera para saber si ya hay otro usuario con el correo deseado
+                boolean yaAsignado = false;
+
                 MyUser yo = new MyUser();
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
                     MyUser myUser = singleSnapshot.getValue(MyUser.class);
@@ -213,16 +216,25 @@ public class UpdateLogin extends AppCompatActivity {
 
                         //Toast.makeText(getBaseContext(),"Se encontro al usuario Yo "+myUser.getNombres(),Toast.LENGTH_SHORT).show();
                         yo = myUser;
-                        break;
+                    }
+
+                    if(myUser.getCorreo().equals(correoDeseado)){
+                        yaAsignado = true;
                     }
                 }
 
-                String correo = et_correo.getText().toString();
 
-                yo.setCorreo(correo);
+                if(!yaAsignado){
+                    yo.setCorreo(correoDeseado);
+                    myRef = database.getReference(PATH_USERS+thisUser.getUid());
+                    myRef.setValue(yo);
 
-                myRef = database.getReference(PATH_USERS+thisUser.getUid());
-                myRef.setValue(yo);
+                    thisUser.updateEmail(correoDeseado);
+                    Toast.makeText(UpdateLogin.this,"Correo electrónico actualizado",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(UpdateLogin.this,R.string.errorUpdateCorreoAsign,Toast.LENGTH_SHORT).show();
+                }
+
 
             }
             @Override

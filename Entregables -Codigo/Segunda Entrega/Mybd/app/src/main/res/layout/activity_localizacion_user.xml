@@ -1,5 +1,6 @@
 <RelativeLayout android:layout_height="match_parent" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -34,11 +35,6 @@
                     android:layout_height="wrap_content"
                     android:text="..." />
 
-                <TextView
-                    android:id="@+id/txtFoto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="..." />
 
                 <TextView
                     android:id="@+id/txtCiudad"
@@ -63,7 +59,7 @@
             <ImageView
                 android:id="@+id/imageViewProfile"
                 android:layout_width="0dp"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:layout_weight="0.3"
                 android:scaleType="centerInside"
 
@@ -96,7 +92,7 @@
                 android:layout_gravity="bottom|end"
                 android:layout_marginBottom="8dp"
                 android:layout_marginRight="8dp"
-                />
+               />
             <fragment
                 android:id="@+id/map1"
                 android:name="com.google.android.gms.maps.MapFragment"

@@ -119,6 +119,16 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
             startActivity(intent);
 
         }
+        else if (itemClicked == R.id.menuSalida){
+            Intent intent = new Intent(LocalizacionUser.this, BandejaSalida.class);
+            startActivity(intent);
+
+        }
+        else if (itemClicked == R.id.menuEntrada){
+            Intent intent = new Intent(LocalizacionUser.this, BandejaEntrada.class);
+            startActivity(intent);
+
+        }
 
         else if (itemClicked == R.id.menuRedesSociales){
             Intent intent = new Intent(LocalizacionUser.this, AddSocialNetwork.class);
@@ -187,7 +197,6 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
     TextView usaurio;
     TextView distancia;
     TextView correo;
-    TextView foto;
     TextView edad;
     TextView sexo;
     ImageView fotoI;
@@ -259,6 +268,7 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
                 if(event.getAction()==   MotionEvent.ACTION_DOWN){
                     Toast.makeText(v.getContext(),"Iniciando viaje...", Toast.LENGTH_SHORT);
                     horainicio=new Date();
+                    finalP.setColor(Color.GREEN);
                     Log.d("hola v ","aaa "+horainicio.toString());
                     play.hide();
 
@@ -357,6 +367,7 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
                                     pintarRuta();
                                     play.show();
                                     mDestino.setVisible(true);
+                                    Toast.makeText(LocalizacionUser.this,"Destino encotrado, incia tu recorrido con el botón '>' ",Toast.LENGTH_SHORT);
                                 } } else {
                                 Toast.makeText(LocalizacionUser.this, "Direcciónno encontrada", Toast.LENGTH_SHORT).show();}
                         } catch (IOException e) { e.printStackTrace(); } }
@@ -371,7 +382,6 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
         usaurio=(TextView)findViewById(R.id.txtusuario) ;
         distancia=(TextView)findViewById(R.id.txtDistancia) ;
         correo=(TextView) findViewById(R.id.txtCorreo);
-        foto=(TextView) findViewById(R.id.txtFoto);
         ciudad=(TextView) findViewById(R.id.txtCiudad);
         edad=(TextView) findViewById(R.id.txtEdad);
         sexo=(TextView) findViewById(R.id.txtSexo);
@@ -380,7 +390,6 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
             usaurio.setText(user.getDisplayName());
             correo.setText(user.getEmail());
             try{
-                foto.setText(user.getPhotoUrl().toString());
 
                 // StorageReference ref=mStorage.child("images/"+user.getUid()+".jpg");
                 //ref
@@ -449,12 +458,13 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
         Double d=distance( latitudLast,longitudLast, mDestino.getPosition().latitude, mDestino.getPosition().longitude);
         distancia.setText("Distancia: "+d + " km");
         kilometros=Float.parseFloat(d+"");
+
     }
 
     public void calularDistancia(){
         Double d=distance( latitudLast,longitudLast, mDestino.getPosition().latitude, mDestino.getPosition().longitude);
         distancia.setText("Distancia: "+d + " km");
-        if(d<=5 && horainicio != null){
+        if(d<=0.03 && horainicio != null){
             Date horafin=new Date();
             Log.d("hola v iini n","aaa "+horainicio.toString());
             Log.d("hola v fin n","aaa "+horafin.toString());
@@ -469,8 +479,9 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
             long horas=diferenciaHoras(calFechaInicial,
                     calFechaFinal)+diferenciaHoras(calFechaInicial,calFechaFinal);
             long minutos=diferenciaMinutos(calFechaInicial,calFechaFinal);
+            long s=cantidadTotalSegundos(calFechaInicial,calFechaFinal);
 
-            Toast.makeText(getBaseContext(),"Finalizacion de la ruta en "+horas+":"+minutos,Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),"Finalización recorrido \n Tiempo empleado: "+horas+" horas, "+minutos+" minutos "+s+" segundos",Toast.LENGTH_LONG).show();
 
             String key = myRef.push().getKey();
             Ruta ruta =new Ruta();
@@ -491,6 +502,15 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
             myRef.setValue(ruta);
 
             horainicio=null;
+            mDestino.setVisible(false);
+            try {
+                finalP.remove();
+
+            }catch (
+                    Exception e
+                    ){
+
+            }
         }
     }
     float kilometros;
@@ -546,7 +566,7 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
 
     public void loadUsers() {
         myRef = database.getReference(PATH_UBICATION);
-        myRef. addValueEventListener(new ValueEventListener() {
+        myRef. addListenerForSingleValueEvent(new ValueEventListener() {
             @Override public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot singleSnapshot : dataSnapshot.getChildren())
                 {
@@ -556,10 +576,10 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
                     //String name = myUser.getName(); int age = myUser.getAge();
                     // Toast.makeText(MapHomeActivity.this, name + ":" + age, Toast.LENGTH_SHORT).show();
 
-                    //  mMap.addMarker(new MarkerOptions()
-                    //        .position(new LatLng(myUbication.getLatitude(),myUbication.getLongitude()))
-                    //      .title("usuario ..." )
-                    //    .icon(BitmapDescriptorFactory.fromResource(R.drawable.bicicleta)));
+                      mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(myUbication.getLatitude(),myUbication.getLongitude()))
+                          .title("usuario ..." )
+                       .icon(BitmapDescriptorFactory.fromResource(R.drawable.near)));
 
                 } }
             @Override public void onCancelled(DatabaseError databaseError)
@@ -567,6 +587,23 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
                 //Log.w(TAG, "error en la consulta", databaseError.toException());
             }
         });
+
+
+
+        List<Taller> lista=new ArrayList<>();
+        lista.add(new Taller("Welcome Expertos en ciclismo",4.678918,-74.044987 ));
+        lista.add(new Taller("GO Bikes",4.689970,-74.046056 ));
+        lista.add(new Taller("El Tomacorriente 79",4.663787,-74.054316));
+        lista.add(new Taller("Bicicletería Michael",4.674457,-74.047632));
+
+        for (Taller t:lista){
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(t.getLatitude(),t.getLongitud()))
+                    .title(t.getNombre() )
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.wrench)));
+
+        }
+
     }
 
     private void obtenerLocalizacion() {
@@ -731,7 +768,8 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
                 .position(sydney)
                 .title("Destino" )
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.bandera)));
-        mDestino.setVisible(true);
+        mDestino.setVisible(false);
+
         //mSydney.setTag(0);
 
         //  mMap.addMarker(mSydney);
@@ -739,6 +777,7 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15));
 //        Toast.makeText(this,"Cargando marcador",Toast.LENGTH_SHORT).show();
         ready=true;
+        loadUsers();
     }
     private GoogleMap mMap;
     private Marker mSydney;
@@ -907,6 +946,45 @@ public class LocalizacionUser extends AppCompatActivity implements OnMapReadyCal
 
 // Fetches data from url passed
 
+
+class Taller {
+
+    String  nombre;
+    double longitud;
+    double latitude;
+    public Taller(){
+    }
+
+    public Taller(String nombre, double latitude,double longitud) {
+        this.nombre = nombre;
+        this.longitud = longitud;
+        this.latitude = latitude;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+}
 class MyLocation{
 
     Date fecha;
