@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menuAddFriend" android:title="Agregar amigo" />
+    <item android:id="@+id/menuList" android:title="Listar amigos" />
+    <item android:id="@+id/menuAddruta" android:title="Agregar ruta" />
+    <item android:id="@+id/menuHistorial" android:title="Historial" />
+
+    <item android:id="@+id/menuActualizarPerfil" android:title="Actualizar Perfil" />
+    <item android:id="@+id/menuActualizarLogin" android:title="Actualizar Login" />
+
+    <item android:id="@+id/menuRedesSociales" android:title="Redes sociales" />
+
+    <item android:id="@+id/menuRutasProgramdas" android:title="Rutas programadas" />
+
+    <item android:id="@+id/menuNocturno" android:title="Modo Nocturno" />
+    <item android:id="@+id/menuLogOut" android:title="Cerrar sesión" />
+
+
+</menu>

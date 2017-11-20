@@ -1,0 +1,131 @@
+<resources>
+    <string name="app_name">PedalAPP</string>
+    <string name="facebook_app_id">551011411917634</string>
+    <string name="fb_login_protocol_scheme">fb551011411917634</string>
+    <string name="nombre">Nombre(s)</string>
+    <string name="apellido">Apellidos</string>
+    <string name="user">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="repeatPassword">Comprobación contraseña</string>
+    <string name="correo">Correo</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="genero">Género</string>
+    <string name="tipo">Tipo de usuario</string>
+    <string name="fechaNacimiento">Fecha de nacimiento</string>
+    <string name="fotoPerfil">Foto de perfil</string>
+
+    <string name="peso">Peso (Kg)</string>
+    <string name="altura">Altura (metros)</string>
+
+    <string name="btnCamara">Cámara</string>
+    <string name="btnGaleria">Galeria</string>
+
+    <string name="signin">Iniciar sesión</string>
+    <string name="signup">Registrarse</string>
+    <string name="update_profile">Actualizar perfil</string>
+    <string name="friends">Lista de amigos</string>
+    <string name="add_social_networks">Agregar redes sociales</string>
+    <string name="create_routes">Crear rutas</string>
+    <string name="find_routes">Consultar rutas</string>
+    <string name="route_beggin">Dirección inicial</string>
+    <string name="route_end">Dirección final</string>
+    <string name="route_name">Nombre de la ruta</string>
+    <string name="create_route">Crear ruta</string>
+    <string name="update">Actualizar</string>
+    <string name="actual_password">Contraseña actual*</string>
+    <string name="new_password">Nueva contraseña*</string>
+    <string name="info_password">*Si desea cambiar de contraseña, escriba la contraseña actual y dos veces la nueva contraeña, sino sólo la contraseña actual una vez.</string>
+    <string name="view_points">Lista de indicadores</string>
+    <string name="delete_friend">Eliminar amigo</string>
+    <string name="send_message">Enviar mensaje</string>
+    <string name="add_friend">Agregar amigo</string>
+    <string name="add_point">Agregar indicador</string>
+    <string name="direction">Dirección</string>
+    <string name="delete_profile">Eliminar cuenta</string>
+    <string name="new_direction">Nueva dirección</string>
+    <string name="new_name">Nueva dirección</string>
+    <string name="delete_point">Eliminar indicador</string>
+    <string name="name_point">Nombre del indicador</string>
+    <string name="new_name_point">Nombre del indicador</string>
+    <string name="add_user">Usuario de amigo a agregar</string>
+    <string name="From">De:</string>
+    <string name="To">Para:</string>
+    <string name="Send">Enviar</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_localizacion">Localizacion</string>
+
+    <array name="cities">
+        <item>Bogotá</item>
+        <item>Medellín</item>
+        <item>Pasto</item>
+    </array>
+
+    <array name="tipo_ruta">
+        <item>Inmediata</item>
+        <item>Programada</item>
+
+    </array>
+    <array name="user_type">
+        <item>Persona</item>
+        <item>Empresa</item>
+    </array>
+
+    <array name="gender">
+        <item>Masculino</item>
+        <item>Femenino</item>
+    </array>
+    <array name="friends"></array>
+    <array name="routes">
+        <item>Ruta 1</item>
+        <item>Ruta 2</item>
+        <item>Ruta 3</item>
+        <item>Ruta 4</item>
+        <item>Ruta 5</item>
+        <item>Ruta 6</item>
+        <item>Ruta 7</item>
+        <item>Ruta 8</item>
+        <item>Ruta 9</item>
+        <item>Ruta 10</item>
+        <item>Ruta 11</item>
+        <item>Ruta 12</item>
+        <item>Ruta 13</item>
+        <item>Ruta 14</item>
+        <item>Ruta 15</item>
+    </array>
+
+    <array name="points">
+        <item>Indicador 1</item>
+        <item>Indicador 2</item>
+        <item>Indicador 3</item>
+        <item>Indicador 4</item>
+        <item>Indicador 5</item>
+        <item>Indicador 6</item>
+        <item>Indicador 7</item>
+        <item>Indicador 8</item>
+        <item>Indicador 9</item>
+        <item>Indicador 10</item>
+        <item>Indicador 11</item>
+        <item>Indicador 12</item>
+        <item>Indicador 13</item>
+        <item>Indicador 14</item>
+        <item>Indicador 15</item>
+    </array>
+    <string name="title_activity_add_friend">AddFriend</string>
+    <string name="title_activity_friend_list">FriendList</string>
+    <string name="title_activity_add_social_network">AddSocialNetwork</string>
+
+    <string name="tv_correoAmigo">Amigo (Correo) : </string>
+    <string name="btn_enviarMensaje">Abrir Chat</string>
+    <string name="btn_eliminarAmigo">Eliminar Amigo</string>
+    <string name="btn_send">Enviar</string>
+
+
+    <string name="switchNewPassword">¿Desea cambiar su contraseña?</string>
+    <string name="switchNewEmail">¿Desea cambiar su correo?</string>
+
+    <string name="new_email">Nuevo correo</string>
+
+    <string name="errorUpdateCorreoAsign">Ese correo ya está asignado a un usuario</string>
+
+</resources>

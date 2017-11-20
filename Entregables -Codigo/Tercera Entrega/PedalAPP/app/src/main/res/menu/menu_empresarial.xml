@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menuActualizarPerfilEmp" android:title="Actualizar Perfil" />
+    <item android:id="@+id/menuActualizarLoginEmp" android:title="Actualizar Login" />
+    <item android:id="@+id/menuProgRoute" android:title="Programar una ruta" />
+    <item android:id="@+id/menuLogoutEmp" android:title="Cerrar Sesión" />
+
+</menu>
